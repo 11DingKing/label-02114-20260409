@@ -1,0 +1,49 @@
+# ===== Backend =====
+backend/target/
+backend/*.jar
+backend/*.war
+backend/*.class
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+
+# ===== Frontend Common =====
+node_modules/
+dist/
+*.local
+.DS_Store
+
+# ===== Frontend Admin =====
+frontend-admin/node_modules/
+frontend-admin/dist/
+frontend-admin/.vite/
+frontend-admin/*.local
+
+# ===== Frontend User =====
+frontend-user/node_modules/
+frontend-user/dist/
+frontend-user/.vite/
+frontend-user/*.local
+
+# ===== IDE =====
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== Environment =====
+.env
+.env.local
+.env.*.local
+
+# ===== Docker =====
+docker-compose.override.yml
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
