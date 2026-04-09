@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -17,6 +18,16 @@ public class JwtUtil {
     
     @Value("${jwt.expiration}")
     private Long expiration;
+    
+    @PostConstruct
+    public void validateSecret() {
+        if (secret == null || secret.isEmpty()) {
+            throw new IllegalArgumentException("JWT secret must be provided via environment variable JWT_SECRET");
+        }
+        if (secret.length() < 32) {
+            throw new IllegalArgumentException("JWT secret must be at least 32 characters long. Current length: " + secret.length());
+        }
+    }
     
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));

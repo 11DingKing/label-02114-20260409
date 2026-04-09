@@ -9,8 +9,8 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:girlfriend_menu}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:root123}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -21,7 +21,6 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto
@@ -30,7 +29,7 @@ mybatis-plus:
       logic-not-delete-value: 0
 
 jwt:
-  secret: ${JWT_SECRET:girlfriend-menu-secret-key-2024-love-you-forever-secure}
+  secret: ${JWT_SECRET}
   expiration: 86400000
 
 # OpenAPI/Swagger 配置
@@ -45,3 +44,13 @@ springdoc:
 logging:
   level:
     com.menu: debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
